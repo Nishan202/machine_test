@@ -9,7 +9,6 @@ class ApiHelper {
     var uri = Uri.parse(url);
     try{
       http.Response response = await http.get(uri);
-      // print(response);
       return returnJsonResponse(response);
     } on SocketException catch(e){
       throw(FetchDataException(errorMessage: "No internet!!"));
@@ -24,7 +23,6 @@ class ApiHelper {
     if(response.statusCode == 200){
       UserModel userModel = jsonDecode(response.body);
       return userModel;
-      // print(userModel);
     } else {
       return null; 
     }
@@ -34,7 +32,6 @@ class ApiHelper {
     switch(response.statusCode){
       case 200:{
         var data = jsonDecode(response.body);
-        print(data);
         return data;
       }
       case 400: throw BadRequestException(errorMessage: response.body.toString());

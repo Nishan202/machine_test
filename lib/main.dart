@@ -6,7 +6,6 @@ import 'package:machine_test/bloc/user_bloc.dart';
 
 void main() {
   runApp(BlocProvider(create: (context) => UserBloc(apiHelper: ApiHelper()), child: MyApp(),));
-  // runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: BlocProvider(create: (context) => UserBloc(apiHelper: ApiHelper()), child: HomeScreen(),),
       home: HomeScreen(),
     );
   }

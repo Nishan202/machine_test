@@ -15,10 +15,8 @@ class UserBloc extends Bloc<UserEvent, UserState>{
 
       try {
         var responseJson = await apiHelper.getApi(url: Urls.userList2Url);
-        // print(responseJson);
         if (responseJson != null) {
           var responseData = UserModel.fromJson(responseJson);
-          // print(responseData);
           emit(UserLoadedState(responseData: responseData));
         } else {
           emit(UserErrorState(erroMessage: 'Error Occured'));

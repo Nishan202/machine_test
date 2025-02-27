@@ -46,11 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if(state is UserLoadedState) {
             var userDataModel = state.responseData;
             return userDataModel.data!.isNotEmpty ? ListView.builder(itemCount: userDataModel.data!.length, itemBuilder: (ctx, index) {
+              var user = state.responseData.data![index];
               return Card(
                 child: InkWell(
-                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailsScreen())),
+                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailsScreen(user: user,))),
                   child: ListTile(
-                    leading: CircleAvatar(child: Image.network(userDataModel.data![index].avatar!),),
+                    leading: CircleAvatar(radius: 30, backgroundImage: NetworkImage(userDataModel.data![index].avatar!),),
                     title: Row(children: [Text(userDataModel.data![index].first_name!, style: TextStyle(color: Colors.black),), SizedBox(width: 10,), Text(userDataModel.data![index].last_name!, style: TextStyle(color: Colors.black),)],),
                     subtitle: Text(userDataModel.data![index].email!, style: TextStyle(color: Colors.black),),
                   ),
