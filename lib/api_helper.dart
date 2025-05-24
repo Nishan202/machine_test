@@ -19,7 +19,7 @@ class ApiHelper {
   Future<dynamic> postApi({required String url, Map<String, dynamic>? bodyParams}) async {
     var uri = Uri.parse(url);
 
-    http.Response response = await http.post(uri, body: bodyParams ?? {"name" : "test", "job" : "testjob"});
+    http.Response response = await http.post(uri, body: bodyParams != null ? jsonEncode(bodyParams) : null);
     if(response.statusCode == 200){
       UserModel userModel = jsonDecode(response.body);
       return userModel;
